@@ -1,0 +1,13 @@
+{
+  "description": "kozj",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false
+  },
+  "compileType": "miniprogram",
+  "appid": "wxbfd47f27b7b39fd8",
+  "projectname": "flattenzj",
+  "miniprogramRoot": "./dist"
+}

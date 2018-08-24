@@ -1,0 +1,207 @@
+<style lang='less'>
+	.room_wrapper{
+		display: flex;
+		align-items: center;
+		padding: 10px;
+		border-bottom: 1px solid #eeeeee;
+		align-items: flex-start;
+		position: relative;
+		z-index: 1;
+	}
+	.titleImg{
+		width: 350rpx;
+		height: 280rpx;
+		margin-right: 10rpx;
+	}
+	.roomTitle{
+		color: rgb(0, 157, 232);
+		font-weight: 400;
+		padding-bottom: 3px;
+	}
+	.roomMoney{
+		color: #E4393C;
+		font-size: 18px;
+		font-weight: 400;
+		display: flex;
+		margin-top: 10px;
+	}
+	.money_box,.releaseTime{
+		flex: 1 1 50%;
+	}
+	.releaseTime{
+		text-align: right;
+		line-height: 18px;
+		box-sizing: border-box;
+		padding-right: 10px;
+	}
+	.releaseTimeText{
+		width: 110;
+		line-height: 18px;
+		height: 18px;
+		text-align: center;
+		font-size: 12px;
+		border: 1px solid #eeeeee;
+		border-radius: 9px;
+		color: #999;
+	}
+	.roomAddress,.roomType,{
+		margin-right: 10rpx;
+	}
+	.roomAddress,.roomType,.roomArea{
+		color: #333;
+	    font-size: 14px;
+	    display: inline-block;
+	    height: 15px;
+	    line-height: 15px;
+	}
+	.roomAddress{
+		width: 120px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow:ellipsis;
+	}
+	.roomTag text{
+		width: 30%;
+		margin-right: 3%;
+		height: 15px;
+		line-height: 15px;
+		text-align: center;
+		color: #6c879e;
+		background-color: #f2f9fe;
+		border: 1px solid #6c879e;
+		font-size: 11px;
+		padding: 2px 4px;
+	}
+</style>
+<template>
+	<view>
+		<repeat for="{{roomData}}" key="id" index="id" item="item">
+			<view class="room_wrapper" @tap="_lookRoomDetail">
+				<image class="titleImg" src="{{item.titleImg}}" />
+				<view class="roomMainMsg">
+					<view class="roomTitle">{{item.title}}</view>
+					<view class="subMsg">
+						<text class="roomAddress">{{item.address}}</text><text class="roomType">{{item.roomType}}</text><text class="roomArea">{{item.roomArea}}平</text>
+					</view>
+					<view class="roomTag">
+						<!-- <repeat for="{{item.tag}}" key="id" index="id" item="item">
+							<view class="tag"></view>
+						</repeat> -->
+						<text>{{item.tag[0]}}</text>
+						<text>{{item.tag[1]}}</text>
+						<text>{{item.tag[2]}}</text>
+					</view>
+					<view class="roomMoney">
+						<view class="money_box">{{item.money}}￥</view>
+						<view class="releaseTime">
+							<view class="releaseTimeText">
+								{{item.releaseTime}}
+							</view>
+						</view>
+					</view>
+				</view>
+
+			</view>
+		</repeat>
+	</view>
+</template>
+
+<script>
+	import wepy from 'wepy'
+	export default class roomList extends wepy.component{
+		data = {
+			roomData: [
+	  			{
+	  				id: '1',
+	  				title: '新华街里二居室',
+	  				titleImg: '../../static/images/room_001.jpg',
+	  				address: '昌平区天通苑天安家园',
+	  				money: '8000/月',
+	  				roomType: '三居',
+	  				roomArea: '90',
+	  				lookedNum: '14',
+	  				releaseTime: '2018-8-16',
+	  				tag: [
+	  					'近地铁',
+	  					'集中供暖',
+	  					'随时看房'
+	  				]
+	  			},
+	  			{
+	  				id: '2',
+	  				title: '新华街里二居室',
+	  				titleImg: '../../static/images/room_001.jpg',
+	  				address: '昌平区天通苑天安家园',
+	  				money: '8000/月',
+	  				roomType: '三居',
+	  				roomArea: '90',
+	  				lookedNum: '14',
+	  				releaseTime: '2018-8-16',
+	  				tag: [
+	  					'近地铁',
+	  					'集中供暖',
+	  					'随时看房'
+	  				]
+	  			},
+	  			{
+	  				id: '3',
+	  				title: '新华街里二居室',
+	  				titleImg: '../../static/images/room_001.jpg',
+	  				address: '昌平区天通苑天安家园',
+	  				money: '8000/月',
+	  				roomType: '三居',
+	  				roomArea: '90',
+	  				lookedNum: '14',
+	  				releaseTime: '2018-8-16',
+	  				tag: [
+	  					'近地铁',
+	  					'集中供暖',
+	  					'随时看房'
+	  				]
+	  			},
+	  			{
+	  				id: '4',
+	  				title: '新华街里二居室',
+	  				titleImg: '../../static/images/room_001.jpg',
+	  				address: '昌平区天通苑天安家园',
+	  				money: '8000/月',
+	  				roomType: '三居',
+	  				roomArea: '90',
+	  				lookedNum: '14',
+	  				releaseTime: '2018-8-16',
+	  				tag: [
+	  					'近地铁',
+	  					'集中供暖',
+	  					'随时看房'
+	  				]
+	  			},
+	  			{
+	  				id: '5',
+	  				title: '新华街里二居室',
+	  				titleImg: '../../static/images/room_001.jpg',
+	  				address: '昌平区天通苑天安家园',
+	  				money: '8000/月',
+	  				roomType: '三居',
+	  				roomArea: '90',
+	  				lookedNum: '14',
+	  				releaseTime: '2018-8-16',
+	  				tag: [
+	  					'近地铁',
+	  					'集中供暖',
+	  					'随时看房'
+	  				]
+	  			}
+	  		]
+		}
+
+		methods = {
+			_lookRoomDetail() {
+				this.$emit('navigateToDetail')
+	    	},
+	    	getRoomDatas(res) {
+	    		console.log(res);
+	    		this.roomData = res;
+	    	}
+		}
+	}
+</script>

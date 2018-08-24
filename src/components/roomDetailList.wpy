@@ -1,0 +1,111 @@
+<style lang='less'>
+	.formGroup{
+		display: flex;
+		align-items: center;
+		padding: 10rpx;
+		margin: 10rpx;
+		.formInfo{
+			flex: 1 0 100rpx;
+			font-size: 28rpx;
+			height: 60rpx;
+			line-height: 60rpx;
+			text-align: center;
+		}
+		.inputRoomMsg{
+			flex: 1 1 700rpx;
+			height: 60rpx;
+			line-height: 60rpx;
+			input{
+				height: 60rpx;
+				width: 600rpx;
+				line-height: 60rpx;
+				border: 1px solid #cccccc;
+				border-radius: 3rpx;
+			}
+		}
+	}
+</style>
+
+<template>
+	<view>
+		<view class='formGroup'>
+			<view class='formInfo'>位置：</view>
+			<view class='inputRoomMsg'><input /></view>
+		</view>
+		<view class='formGroup'>
+			<view class='formInfo'>价格：</view>
+			<view class='inputRoomMsg'><input /></view>
+		</view>
+		<view class='formGroup'>
+			<view class='formInfo'>设施：</view>
+			<view class='inputRoomMsg'>
+			<checkbox-group >
+				<label class='checkbox' wx:for='{{roomFacilities}}' wx:key='{{item.id}}'>
+				    <checkbox value='{{item.name}}' checked='{{item.checked}}'/>{{item.name}}
+				</label>
+			</checkbox-group>
+			</view>
+			
+		</view>
+		<view class='formGroup'>
+			<view class='formInfo'>房型：</view>
+			<view class='inputRoomMsg'><input value='{{roomType}}'/></view>
+		</view>
+		<view class='formGroup'>
+			<view class='formInfo'>要求：</view>
+			<view class='inputRoomMsg'><input value='{{rooms.otherRequest}}'/></view>
+		</view>
+	</view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class roomDetailList extends wepy.component {
+  	data = {
+  		rooms: {},
+  		facilities: [
+			{
+				id: 1,
+				name: '洗衣机',
+				checked: false
+			},
+			{
+				id: 1,
+				name: '冰箱',
+				checked: false
+			},
+			{
+				id: 1,
+				name: '除灶',
+				checked: false
+			}
+		]
+  	}
+
+  	computed = {
+  		roomType:function() {
+  			let type = "";
+  			console.log(this.rooms);
+  			if(!this.rooms){
+  				type = this.rooms.type == '1' ? '一居' : (this.rooms.type == 2 ? '两居' : (this.rooms.type == 3 ? '三居' : (this.rooms.type == 4 ? '四居' : '')));
+  			}else{
+  				type = ""
+  			}
+  			return type;
+  		},
+		roomFacilities: function() {
+			if(!this.rooms.facilities){
+				return this.facilities
+			}else{
+				return this.rooms.facilities
+			}
+		}
+  	}
+    methods = {
+		getRoomMsg(data) {
+			console.log(data);
+		}
+    }
+  }
+</script>

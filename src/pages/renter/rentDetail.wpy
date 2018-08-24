@@ -1,0 +1,38 @@
+<style lang="less">
+	.ai5_room{
+		height: 100vh;
+	}
+</style>
+
+<template>
+<view class="body_wrapper">
+	<view class="breadcaset_wrapper">房子详情</view>
+	<view class="content">
+		<roomDetailList props="{{showDetailList}}"></roomDetailList>
+	</view>
+	<view class="_tabbar">
+		<view class="_tabbarItem" @tap="_toRoomList">联系房东</view>
+		<view class="_tabbarItem active" @tap="_defriend">举报</view>
+	</view>
+</view>
+	
+</template>
+
+<script>
+  import wepy from 'wepy'
+	import roomDetailList from '../../components/roomDetailList'
+  export default class rentDetail extends wepy.page {
+		data = {
+			showDetailList: false
+		}
+
+		components = {
+			'roomDetailList': roomDetailList
+		}
+    methods = {
+			_defriend() {
+				
+			}
+		}
+  }
+</script>

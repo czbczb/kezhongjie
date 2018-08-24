@@ -1,0 +1,73 @@
+<style>
+	.releaseRoom{
+		text-align: right;
+		flex: 1;
+	}
+	.releaseRoom text{
+		width: 100px;
+		height: 30px;
+		line-height: 30px;
+		text-align: center;
+		border-radius: 15px;
+		background-color: #84D945;
+		color: #333333;
+		margin-right: 10px;
+		display: inline-block;
+		font-size: 30rpx;
+	}
+</style>
+
+<template>
+	<view class="body_wrapper">
+		<view class="content">
+			<view class="breadcast_wrapper">
+				<view class="nav">
+					我的房源
+				</view>
+				<view class="releaseRoom">
+					<text bindtap="_releaseRoom">发布</text>
+				</view>
+			</view>
+			<view class="main_wrapper">
+				<roomList></roomList>
+			</view>
+		</view>
+			
+		<view class="_tabbar">
+			<view class="_tabbarItem active" @tap="_toRoomList">我的</view>
+			<view class="_tabbarItem" @tap="_toReleaseRoom">发布</view>
+		</view>
+	</view>
+	
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import roomList from '../../components/roomList'
+
+  export default class bossRoom extends wepy.page {
+  	config = {}
+
+  	components = {
+  		'roomList': roomList
+  	}
+
+    methods = {
+		_releaseRoom() {
+			this.$navigate('/pages/boss/releaseRoom')
+		},
+		_toRoomList() {
+			this.$navigate('/pages/boss/bossRoom')
+		},
+		_toReleaseRoom() {
+			this.$navigate('/pages/boss/releaseRoom')
+		}
+    }
+
+    events = {
+    	navigateToDetail() {
+			this.$navigate('/pages/boss/bossRoomDetail')
+    	},
+    }
+  }
+</script>

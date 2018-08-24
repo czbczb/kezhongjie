@@ -1,0 +1,96 @@
+<style type="less">
+	.breadcast_wrapper{
+		display: flex;
+		padding: 0 10px;
+		border-bottom: 1px solid #eeeeee;
+		height: 35px;
+	}
+	.nav{
+		height: 30px;
+		line-height: 30px;
+	}
+
+  .body_wrapper{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .content{
+    height: 100vh;
+    padding-bottom: 82rpx;
+    flex: 1;
+    overflow-y: auto;
+    box-sizing: border-box;
+  }
+  ._tabbar{
+    flex: 1;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80rpx;
+    line-height: 80rpx;
+    background-color: #ffffff;
+    border-top: 1px solid #cccccc;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    z-index: 10;
+  }
+._tabbarItem{
+  flex: 1;
+  text-align: center;
+  border-right: 1px solid #cccccc;
+}
+._tabbarItem:last-child{
+  border-right: 0;
+}
+._tabbarItem.active{
+  color: #e4393c;
+}
+</style>
+<script>
+import wepy from 'wepy'
+export default class extends wepy.app {
+  config = {
+    pages: [
+      'pages/index',
+      'pages/boss/bossRoom',
+      'pages/boss/releaseRoom',
+      'pages/boss/bossRoomDetail',
+      'pages/renter/rentDetail',
+      'pages/renter/rentIndex'
+    ],
+
+    window: {
+      backgroundTextStyle: 'light',
+      navigationBarBackgroundColor: '#fff',
+      navigationBarTitleText: 'ai5house',
+      navigationBarTextStyle: 'black'
+    }
+  }
+
+  globalData = {
+    userInfo: null
+  }
+
+  constructor () {
+    super()
+    this.use('requestfix')
+  }
+
+  getUserInfo(cb) {
+    const that = this
+    if (this.globalData.userInfo) {
+      return this.globalData.userInfo
+    }
+    wepy.getUserInfo({
+      success (res) {
+        that.globalData.userInfo = res.userInfo
+        cb && cb(res.userInfo)
+        console.log(res.userInfo)
+      }
+    })
+  }
+}
+</script>

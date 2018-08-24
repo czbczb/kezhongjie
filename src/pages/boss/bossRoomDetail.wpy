@@ -1,0 +1,109 @@
+
+<style type="less">
+	.ai5_room{
+		height: 100vh;
+	}
+	.slide-image{
+		width: 100%;
+		height: 150px;
+	}
+	.home{
+		width: 50rpx;
+		height: 50rpx;
+		background-image: url('../../static/images/home.png') no-repeat;
+		background-size: 100%;
+		position: fixed;
+		bottom: 100rpx;
+		right: 20rpx;
+		border-radius: 100%;
+	}
+	.modifyBtn{
+
+	}
+</style>
+
+<template>
+	<view>
+		<view class="breadcast_wrapper">
+			<view class="nav">房源详情</view>
+		</view>
+		<div class="ai5_room">
+			<swiper indicator-dots="true" autoplay="false" interval="2000" duration="500">
+				<block wx:for="{{rooms.imgList}}">
+					<swiper-item style="height:250px;">
+						<image src="{{item}}" class="slide-image" width="100%" height="150"/>
+					</swiper-item>
+				</block>
+			</swiper>
+			<!-- <component v-bind:is="{{isModify}}"></component> -->
+			<roomDetailList props="{{showDetailList}}"></roomDetailList>
+			<button wx:if="{{isModify}}" class="modifyBtn" @tap="_modifyState">修改</button>
+			<button wx:if="{{!isModify}}"  class="modifyBtn" @tap="_noModifyState">提交审核</button>
+		</div>
+		<view class="home"></view>
+	</view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import roomDetailList from '../../components/roomDetailList'
+  import modifyRoom from '../../components/modifyRoom'
+
+  export default class bossRoomDetail extends wepy.page {
+
+	data = {
+		showDetailList: false,
+		isModify: true,
+		rooms: {
+			imgList: [
+				'../../static/images/room_001.jpg',
+				'../../static/images/room_001.jpg',
+				'../../static/images/room_001.jpg'
+			],
+			address: '天通苑',
+			money: '2000',
+			facilities: [
+				{
+					id: 1,
+					name: '洗衣机',
+					checked: false
+				},
+				{
+					id: 1,
+					name: '冰箱',
+					checked: false
+				},
+				{
+					id: 1,
+					name: '除灶',
+					checked: true
+				}
+			],
+			typy: 1,//1:一居室，两居室，三居室，整租
+			otherRequest: '爱干净，女生优先'
+		}
+	}
+
+  	components = {
+		'roomDetailList': roomDetailList,
+		"modifyRoom": modifyRoom
+  	}
+
+	onLoad() {
+		this.$invoke('roomDetailList',"getRoomMsg",this.rooms);
+	}
+
+    methods = {
+    	_modifyState() {
+    		this.$invoke('modifyRoom',"getRoomMsg",this.rooms);
+    		// 数据交互
+	    		if(true){
+	    			this.isModify = false;
+	    		}
+    	},
+    	_noModifyState() {
+    		this.isModify = true;
+    	}
+    }
+  }
+</script>

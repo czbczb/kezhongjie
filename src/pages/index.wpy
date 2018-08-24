@@ -1,0 +1,64 @@
+<style type="less">
+  .authorizathion{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    justify-content:center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .needRentBtn,.rentBoss{
+    width: 60%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 20px;
+    border: 0;
+    background-color: #4AA3FE;
+    color: #ffffff;
+  }
+  .report{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0 10px 10px 0;
+    border-radius: 5px;
+    width: 110px;
+    border: 1px solid #C1CDDB;
+    text-align: center;
+    line-height: 30px;
+    color: #1F2D3D;
+    font-size: 14px;
+  }
+</style>
+
+<template>
+  <view>
+    <view class="authorizathion">
+      <button class="rentBoss" bindtap="isLandlord">我要出租</button>
+      <button class="needRentBtn" bindtap="isNeedRent">我要求租</button>
+    </view>
+    <view class="report" @tap="reportPerson">举报中介</view>
+    </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  export default class Index extends wepy.page {
+    getUserMsg() {
+    //  wx.navigateTo();
+    }
+
+    methods = {
+      isLandlord() {
+        this.$redirect('/pages/boss/bossRoom')
+      },
+      reportPerson() {},
+      isNeedRent() {
+        this.$redirect('/pages/renter/rentIndex')
+      }
+    }
+  }
+</script>

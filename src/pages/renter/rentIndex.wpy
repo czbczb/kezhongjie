@@ -1,0 +1,106 @@
+<style lang="less">
+    .rentHeader{
+        background-color: #397EFE;
+        display: flex;
+        padding: 10rpx 20rpx 10rpx 20rpx;
+        .myaddress{
+            flex: 0 0 200rpx;
+            height: 60rpx;
+            line-height: 60rpx;
+            font-size: 28rpx;
+            color: #ffffff;
+        }
+        .search_wrapper{
+            flex: 1 1 800rpx;
+            box-sizing: border-box;
+            display: flex;
+            align-item: center;
+            align-justify: center;
+            .searInput{
+                flex: 1 1 770rpx;
+                border: 1px solid #eeeeee;
+                border-right: 0;
+                border-top-left-radius: 4px;
+                border-bottom-left-radius: 4px;
+                padding: 0 5px;
+                height: 60rpx;
+                line-height: 60rpx;
+                background-color: #f5f5f5;
+            }
+            .serchBtn{
+                flex: 0 0 60rpx;
+                height: 60rpx;
+                line-height: 60rpx;
+                background-image: url('../../static/search.png') no-repeat;
+                background-color: #f5f5f5;
+                border: 1px solid #eeeeee;
+                border-left: 0;
+                border-top-right-radius: 4px;
+                border-bottom-right-radius: 4px;
+            }
+        }
+    }
+    .searchType{
+        display: flex;
+        padding: 0 20rpx;
+        border-top: 1px solid #eeeeee;
+        font-size: 28rpx;
+        color: #999999;
+        .searchItem{
+            flex: 1;
+            text-align: center;
+            border-right: 1px solid #cccccc;
+        }
+        .searchItem:first-child{
+            flex: 1 1 100rpx;
+            text-align: left;
+        }
+        .searchItem:last-child{
+            border-right: 0;
+        }
+    }
+</style>
+
+<template>
+    <view class="body_wrapper">
+        <view class="rentHeader">
+            <view class="myaddress">北京</view>
+            <view class="search_wrapper">
+                <input class="searInput" type="text" name="searchMsg" /><view class="serchBtn"></view>
+            </view>
+        </view>
+        <view class="searchType">
+            <view class="searchItem">北京->昌平->天通苑</view>
+            <view class="searchItem">租金</view>
+            <view class="searchItem">房型</view>
+        </view>
+        <view class="content">
+            <roomList></roomList>
+        </view>
+    </view>
+
+
+</template>
+
+<script>
+import wepy from 'wepy'
+import roomList from "../../components/roomList"
+
+export default class rentIndex extends wepy.page {
+
+	data = {}
+
+    components = {
+        'roomList': roomList
+    }
+
+    methods = {}
+
+    events = {
+        navigateToDetail() {
+            this.$navigate('/pages/renter/rentDetail')
+        }
+    }
+    onLoad() {}
+}
+</script>
